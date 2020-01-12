@@ -1,0 +1,78 @@
+<html>
+<head>
+<style>
+h1 {
+	text-shadow:0.1em 2px 7px white;
+}<!--文本阴影-->
+p {
+	text-shadow:0.1em 2px 2px white;
+	font-size:large;
+}<!--文本阴影-->
+a {
+	background-attachment:fixed;
+}
+#bgvid { 
+	position: fixed;
+	right: 0;
+	bottom: 0; 
+	min-width: 100%;
+	min-height: 100%; 
+	width: auto; 
+	height: auto; 
+	z-index: -100; 
+	background-repeat:no-repeat; 
+	background-size: cover; 
+}<!--视频在网页中固定不动不重复，保持图像本身的宽高比例,且全屏-->
+</style>
+</head>
+
+<body>
+	<video autoplay="autoplay" loop="loop" id="bgvid"> 
+		<source src="mix.mp4"><!--视频路径-->
+	</video><!--循环播放视频资源-->
+	<div id="timetable" style="font-size:22px;"><!--时间显示的大小和颜色-->
+		Time
+	</div><!--左上角时间显示-->
+	<h1 style="text-indent:5%">百度一下</h1><!--文本的缩进-->
+	<p style="text-indent:5%">
+	<a href="http://www.baidu.com/" target="_blank">www.baidu.com</a><!--超链接-->
+	</p>
+	<h1 style="text-indent:10%">哔哩哔哩官网</h1>
+	<p style="text-indent:10%">
+	<a href="http://www.bilibili.com/" target="_blank">www.bilibili.com</a>
+	</p>
+	<script language="javascript">
+	function get_time() 
+	{    
+		var date=new Date();    
+		var year="",month="",day="",week="",hour="",minute="",second="";    
+		year=date.getFullYear();    
+		month=add_zero(date.getMonth()+1);    
+		day=add_zero(date.getDate());    
+		week=date.getDay();    
+		switch (date.getDay()) 
+		{
+			case 0:val="周日";break
+			case 1:val="周一";break
+			case 2:val="周二";break
+			case 3:val="周三";break
+			case 4:val="周四";break
+			case 5:val="周五";break
+			case 6:val="周六";break
+		}
+		hour=add_zero(date.getHours());
+		minute=add_zero(date.getMinutes());
+		second=add_zero(date.getSeconds());
+		document.getElementById("timetable").innerHTML=" "+year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second+" "+val;
+	}
+
+	function add_zero(temp)
+	{
+		if(temp<10) return "0"+temp;
+		else return temp;
+	}
+	setInterval("get_time()",1000);
+	</script>
+	<!--时间显示的具体js语句-->
+</body>
+</html>
